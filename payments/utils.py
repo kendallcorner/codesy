@@ -88,6 +88,9 @@ def transaction_amounts(amount):
         gross_transfer_fee
         - actual_transfer_fee
     )
+    #This will never come to 0, since you are using 2 numbers to calculate the transfer fees that are supposed to be different (amount = payout_amount + payout_stripe_fee + codesy_fee_amount)to calculate it.
+
+    charge_stripe_fee = charge_amount*stripe_pct +stripe_transaction
 
     return {
         'amount': amount,
@@ -100,7 +103,9 @@ def transaction_amounts(amount):
         'application_fee': application_fee,
         'gross_transfer_fee': gross_transfer_fee,
         'actual_transfer_fee': actual_transfer_fee,
-        'transfer_overage': transfer_overage
+        'transfer_overage': transfer_overage,
+        'charge_stripe_fee': charge_stripe_fee,
+        'miscalculation_of_total_stripe_fee': (total_stripe_fee - charge_stripe_fee - actual_transfer_fee)
     }
 
 
