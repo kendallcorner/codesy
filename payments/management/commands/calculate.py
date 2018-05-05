@@ -11,7 +11,7 @@ pp = pprint.PrettyPrinter(indent=4, width=-1)
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('amount', nargs='+', type=int)
+        parser.add_argument('amount', nargs='+', type=float)
 
     def handle(self, *args, **options):
             amount = options['amount'][0]
