@@ -1,4 +1,5 @@
 import pprint
+from decimal import Decimal
 
 from django.core.management.base import BaseCommand
 
@@ -14,5 +15,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
             amount = options['amount'][0]
+            amount = Decimal(amount)
             details = utils.transaction_amounts(amount)
             pp.pprint(details)
