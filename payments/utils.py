@@ -90,7 +90,7 @@ def transaction_amounts(amount):
     )
     #This will never come to 0, since you are using 2 numbers to calculate the transfer fees that are supposed to be different (amount = payout_amount + payout_stripe_fee + codesy_fee_amount)to calculate it.
 
-    charge_stripe_fee = charge_amount*stripe_pct +stripe_transaction
+    charge_stripe_fee = round_penny(charge_amount*stripe_pct +stripe_transaction)
 
     return {
         'amount': amount,
